@@ -84,3 +84,6 @@ router/Cargo.lock
 router/target/
 router/.env
 open-api-spec.yaml
+portal/dist/
+portal/node_modules/
+portal/.env

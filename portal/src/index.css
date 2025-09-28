@@ -1,0 +1,139 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* GateZero Dark Azure APIM Design System
+   Professional dark theme inspired by Azure API Management
+   All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Dark Azure APIM Theme */
+    --background: 215 28% 7%;
+    --foreground: 213 31% 91%;
+
+    --card: 217 32% 10%;
+    --card-foreground: 213 31% 91%;
+
+    --popover: 217 32% 12%;
+    --popover-foreground: 213 31% 91%;
+
+    --primary: 206 100% 50%;
+    --primary-foreground: 215 28% 7%;
+
+    --secondary: 215 19% 16%;
+    --secondary-foreground: 213 31% 91%;
+
+    --muted: 215 19% 16%;
+    --muted-foreground: 215 11% 60%;
+
+    --accent: 216 34% 20%;
+    --accent-foreground: 213 31% 91%;
+
+    --destructive: 0 91% 71%;
+    --destructive-foreground: 215 28% 7%;
+
+    --success: 142 76% 36%;
+    --success-foreground: 355 7% 97%;
+
+    --warning: 38 92% 50%;
+    --warning-foreground: 215 28% 7%;
+
+    --border: 215 19% 20%;
+    --input: 215 19% 16%;
+    --ring: 206 100% 50%;
+
+    --radius: 0.75rem;
+
+    /* Azure APIM Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(206 100% 50%), hsl(213 90% 45%));
+    --gradient-card: linear-gradient(145deg, hsl(217 32% 10%), hsl(215 28% 12%));
+    --gradient-hero: linear-gradient(135deg, hsl(215 28% 7%), hsl(217 32% 12%));
+    
+    /* Azure APIM Shadows */
+    --shadow-sm: 0 1px 2px 0 hsl(215 28% 7% / 0.05);
+    --shadow-md: 0 4px 6px -1px hsl(215 28% 7% / 0.1), 0 2px 4px -1px hsl(215 28% 7% / 0.06);
+    --shadow-lg: 0 10px 15px -3px hsl(215 28% 7% / 0.1), 0 4px 6px -2px hsl(215 28% 7% / 0.05);
+    --shadow-glow: 0 0 20px hsl(206 100% 50% / 0.3);
+
+    /* Sidebar */
+    --sidebar-background: 215 28% 5%;
+    --sidebar-foreground: 213 31% 91%;
+    --sidebar-primary: 206 100% 50%;
+    --sidebar-primary-foreground: 215 28% 7%;
+    --sidebar-accent: 215 19% 16%;
+    --sidebar-accent-foreground: 213 31% 91%;
+    --sidebar-border: 215 19% 20%;
+    --sidebar-ring: 206 100% 50%;
+
+    /* Transitions */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-fast: all 0.15s ease-out;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    background: linear-gradient(135deg, hsl(215 28% 7%), hsl(217 32% 10%));
+    min-height: 100vh;
+  }
+
+  /* Custom scrollbar for dark theme */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-muted/20;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-muted rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-muted-foreground/50;
+  }
+}
+
+/* GateZero Azure APIM Component Styles */
+@layer components {
+  .azure-card {
+    @apply bg-card border border-border rounded-xl shadow-lg backdrop-blur-sm;
+    background: var(--gradient-card);
+  }
+
+  .azure-button-primary {
+    @apply bg-primary text-primary-foreground hover:bg-primary/90 shadow-md;
+    background: var(--gradient-primary);
+    transition: var(--transition-smooth);
+  }
+
+  .azure-button-primary:hover {
+    box-shadow: var(--shadow-glow);
+    transform: translateY(-1px);
+  }
+
+  .azure-status-healthy {
+    @apply bg-success/20 text-success border border-success/30;
+  }
+
+  .azure-status-warning {
+    @apply bg-warning/20 text-warning border border-warning/30;
+  }
+
+  .azure-status-error {
+    @apply bg-destructive/20 text-destructive border border-destructive/30;
+  }
+
+  .azure-glow {
+    box-shadow: var(--shadow-glow);
+  }
+}
