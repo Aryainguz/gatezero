@@ -1,0 +1,55 @@
+version: '3.8'
+
+services:
+  gateway-manager:
+    build:
+      context: ./gateway-manager
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - MONGO_URI=${MONGO_URI}
+      - DB_NAME=${DB_NAME}
+      - GATEWAY_PORT=3000
+      - NODE_ENV=production
+    depends_on:
+      - router
+    networks:
+      - app-network
+
+  router:
+    build:
+      context: ./router
+      dockerfile: Dockerfile
+    ports:
+      - "3001:3001"
+    environment:
+      - MONGO_URI=${MONGO_URI}
+      - DB_NAME=${DB_NAME}
+      - LOOKUP_PORT=3001
+      - RUST_LOG=info
+    networks:
+      - app-network
+
+  # Optional: Local MongoDB for development
+  # mongo:
+  #   image: mongo:7.0
+  #   container_name: gatezero-mongo
+  #   restart: always
+  #   ports:
+  #     - "27017:27017"
+  #   environment:
+  #     MONGO_INITDB_ROOT_USERNAME: admin
+  #     MONGO_INITDB_ROOT_PASSWORD: password
+  #     MONGO_INITDB_DATABASE: gatezero_db
+  #   volumes:
+  #     - mongo-data:/data/db
+  #   networks:
+  #     - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+# volumes:
+#   mongo-data:
